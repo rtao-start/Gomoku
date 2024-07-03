@@ -15,7 +15,7 @@ enableClicksElement.addEventListener('change', () => {
 });
 
 async function fetchBoard() {
-    const response = await fetch('http://localhost:5000/board');
+    const response = await fetch('http://localhost:13200/board');
     const data = await response.json();
     currentPlayer = data.current_player;
     winner = data.winner;
@@ -87,7 +87,7 @@ function handleBoardClick(event) {
 
 async function makeMove(x, y) {
     if (winner) return; // If there's a winner, ignore further moves
-    const response = await fetch('http://localhost:5000/move', {
+    const response = await fetch('http://localhost:13200/move', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -103,7 +103,7 @@ async function makeMove(x, y) {
 }
 
 async function resetGame() {
-    await fetch('http://localhost:5000/reset', { method: 'POST' });
+    await fetch('http://localhost:13200/reset', { method: 'POST' });
     fetchBoard(); // Reset the board
 }
 
