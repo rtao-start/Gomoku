@@ -31,4 +31,4 @@ def reset():
     return jsonify({'success': True})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True,port=18666)
