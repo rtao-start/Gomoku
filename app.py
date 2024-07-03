@@ -1,10 +1,14 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from game import Gomoku
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='', static_folder='static')
 CORS(app)
 game = Gomoku()
+
+@app.route('/')
+def serve_frontend():
+    return send_from_directory(app.static_folder, 'index.html')
 
 @app.route('/board', methods=['GET'])
 def get_board():
