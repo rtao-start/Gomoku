@@ -7,10 +7,13 @@ class Gomoku:
     def reset(self):
         self.__init__()
 
-    def make_move(self, x, y):
+    def set_player(self, current_player):
+        self.current_player = current_player
+
+    def make_move(self, x, y, current_player):
         if self.board[x][y] != 0 or self.winner is not None:
             return False
-
+        self.set_player(current_player)
         self.board[x][y] = self.current_player
         if self.check_winner(x, y):
             self.winner = self.current_player

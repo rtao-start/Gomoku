@@ -22,7 +22,8 @@ def get_board():
 def make_move():
     data = request.json
     x, y = data['x'], data['y']
-    success = game.make_move(x, y)
+    current_player = data['current_player']
+    success = game.make_move(x, y, current_player)
     return jsonify({'success': success, 'winner': game.get_winner()})
 
 @app.route('/reset', methods=['POST'])
@@ -31,4 +32,4 @@ def reset():
     return jsonify({'success': True})
 
 if __name__ == '__main__':
-    app.run(debug=True,port=13200,host=0.0.0.0)
+    app.run(debug=True,port=13200,host='0.0.0.0')
